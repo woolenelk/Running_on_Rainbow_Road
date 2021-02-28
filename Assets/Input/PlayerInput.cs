@@ -57,6 +57,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""912e165a-7f4b-4c99-a0d3-b140558e0f97"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -107,7 +115,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""24296082-4843-462b-9641-ee417f3464c5"",
-                    ""path"": ""<Keyboard>/numpad9"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -118,7 +126,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""401334f9-bade-4495-b710-3b41af418c35"",
-                    ""path"": ""<Keyboard>/numpad7"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -129,11 +137,22 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6413af7a-0d0c-4d63-a3c1-ebdc75bf501c"",
-                    ""path"": ""<Keyboard>/numpad8"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AddGreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5efd0a9f-98d3-45d7-a594-6a1487148d2f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -161,6 +180,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_PlayerMovement_AddBlue = m_PlayerMovement.FindAction("AddBlue", throwIfNotFound: true);
         m_PlayerMovement_AddRed = m_PlayerMovement.FindAction("AddRed", throwIfNotFound: true);
         m_PlayerMovement_AddGreen = m_PlayerMovement.FindAction("AddGreen", throwIfNotFound: true);
+        m_PlayerMovement_Pause = m_PlayerMovement.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -215,6 +235,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMovement_AddBlue;
     private readonly InputAction m_PlayerMovement_AddRed;
     private readonly InputAction m_PlayerMovement_AddGreen;
+    private readonly InputAction m_PlayerMovement_Pause;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -224,6 +245,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @AddBlue => m_Wrapper.m_PlayerMovement_AddBlue;
         public InputAction @AddRed => m_Wrapper.m_PlayerMovement_AddRed;
         public InputAction @AddGreen => m_Wrapper.m_PlayerMovement_AddGreen;
+        public InputAction @Pause => m_Wrapper.m_PlayerMovement_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -248,6 +270,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @AddGreen.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAddGreen;
                 @AddGreen.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAddGreen;
                 @AddGreen.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAddGreen;
+                @Pause.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -267,6 +292,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @AddGreen.started += instance.OnAddGreen;
                 @AddGreen.performed += instance.OnAddGreen;
                 @AddGreen.canceled += instance.OnAddGreen;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -287,5 +315,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnAddBlue(InputAction.CallbackContext context);
         void OnAddRed(InputAction.CallbackContext context);
         void OnAddGreen(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

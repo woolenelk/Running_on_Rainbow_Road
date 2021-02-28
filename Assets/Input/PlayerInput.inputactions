@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "912e165a-7f4b-4c99-a0d3-b140558e0f97",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -94,7 +102,7 @@
                 {
                     "name": "",
                     "id": "24296082-4843-462b-9641-ee417f3464c5",
-                    "path": "<Keyboard>/numpad9",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -105,7 +113,7 @@
                 {
                     "name": "",
                     "id": "401334f9-bade-4495-b710-3b41af418c35",
-                    "path": "<Keyboard>/numpad7",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -116,11 +124,22 @@
                 {
                     "name": "",
                     "id": "6413af7a-0d0c-4d63-a3c1-ebdc75bf501c",
-                    "path": "<Keyboard>/numpad8",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "AddGreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5efd0a9f-98d3-45d7-a594-6a1487148d2f",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

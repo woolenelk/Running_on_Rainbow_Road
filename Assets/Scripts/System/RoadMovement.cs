@@ -6,7 +6,7 @@ public class RoadMovement : MonoBehaviour
 {
     PlatformManager platformManager;
     [SerializeField]
-    public static float speed;
+    public float speed;
 
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class RoadMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 10;
+        
     }
 
     // Update is called once per frame
@@ -28,13 +28,9 @@ public class RoadMovement : MonoBehaviour
 
     void Checkbounds()
     {
-        if (transform.position.z < -15 )
+        if (transform.position.z < -15 * transform.localScale.z)
         {
             platformManager.RemovePlatform(gameObject);
         }
-    }
-    public void IncreaseSpeed()
-    {
-        speed++;
-    }
+    } 
 }

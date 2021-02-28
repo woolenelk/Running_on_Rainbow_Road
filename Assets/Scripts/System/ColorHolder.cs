@@ -15,10 +15,14 @@ public class ColorHolder : MonoBehaviour
     [SerializeField]
     public PlatformColor color;
     Renderer renderer;
+    [SerializeField]
+    bool startingWhite = false;
     // Start is called before the first frame update
     void Start()
     {
         renderer = GetComponent<Renderer>();
+        if (!startingWhite)
+            color = (PlatformColor)Random.Range(0, 3);
     }
 
     // Update is called once per frame

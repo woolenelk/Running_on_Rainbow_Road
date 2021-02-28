@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - PlatformManager
+  - Platform
+  - DeathPlane
   layers:
   - Default
   - TransparentFX
